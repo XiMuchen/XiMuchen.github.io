@@ -1,0 +1,93 @@
+{
+  "_about": "Research projects shown on the Research page, grouped by 'area' (dynamics, measurement, or ai). To add a project, copy one block, paste it, and change the values. 'papers' lists keys from content/publications.bib. 'figure' is optional; without it the project shows its 'icon' (an id from assets/img/icons.svg without the 'i-'). Text starting with DRAFT: is waiting for Muchen's approval (the word DRAFT is not shown on the page).",
+
+  "projects": [
+    {
+      "area": "dynamics",
+      "title": "Behavioral variability across people and situations",
+      "summary": "DRAFT: Even within the same kind of situation, a person's behavior varies. I treat each person's behavior in each situation as a distribution and use Bayesian mixed effects location scale models to estimate how people and situations shift both its typical level and its spread. Across two intensive longitudinal studies, situations made people more variable or less variable, and traits interacted with situations relevant to those traits to predict how variable people were.",
+      "icon": "variability",
+      "figure": {
+        "src": "assets/img/research/variability-two-people.jpg",
+        "alt": "Two panels, one per participant, each showing distributions of conscientiousness in two situations, studying and feeling tired, with a solid line for the person's overall distribution. The situation distributions differ in center and spread between the two participants.",
+        "caption": "DRAFT: Conscientiousness for two participants while studying and while tired. Shaded curves are situations; the solid line is the person's overall distribution."
+      },
+      "papers": ["xi2025variability"]
+    },
+    {
+      "area": "dynamics",
+      "title": "The Dynamic Contingency Model",
+      "summary": "DRAFT: A Bayesian dynamic structural equation model, written in Stan, that estimates links between situations and behavior in the same moment together with carryover and lagged effects, and adjusts for unequal time between surveys. In experience sampling data from about 300 undergraduates across 25 behavior and situation pairs, it outperformed competing models. Situations were most strongly tied to behavior in the same moment, behavior predicted later situations more than the reverse, and people differed substantially in these dynamics, with the Big Five explaining only a small part.",
+      "icon": "dynamics",
+      "papers": ["xi2026dcm"]
+    },
+    {
+      "area": "dynamics",
+      "title": "Situations in continuous time",
+      "summary": "DRAFT: Using continuous time structural equation models (ctSEM), we compared two accounts of how situations act on behavior: as external inputs that shift behavior to a new level, or as part of one coupled system with behavior. The input account predicted new observations better, suggesting that situations mainly redirect where behavior settles rather than steering how fast it changes.",
+      "icon": "dynamics",
+      "papers": ["simon2026situations"]
+    },
+    {
+      "area": "dynamics",
+      "title": "DILT: Dynamic Individualized Latent Trait model",
+      "summary": "DRAFT: My dissertation model combines a shared trait structure with each person's own structure and dynamics. A graded response model links ratings to a stable trait part and a changing state part; personal loadings and an Ornstein-Uhlenbeck process describe how each person's states are organized and change over time and context. In 93 participants with about 75 surveys each, personal structure gave the largest gain in predicting new responses, and the full model with time and context performed best.",
+      "icon": "latent",
+      "figure": {
+        "src": "assets/img/research/dilt-variance.png",
+        "alt": "Stacked bar chart for 93 participants sorted from left to right. Blue shows the share of variance explained by the shared trait, red the share explained by the person's own within-person process. The blue share falls from nearly all to under a tenth across participants.",
+        "caption": "DRAFT: For each of 93 participants, the share of explained variance from the shared trait (blue) and from the person's own process over time (red)."
+      },
+      "papers": ["chen2024ipgp"]
+    },
+    {
+      "area": "measurement",
+      "title": "Big Five Adaptive Inventory",
+      "summary": "DRAFT: A computerized adaptive Big Five test built on item response theory: each next item is chosen from the current trait estimate. With five adaptive items per trait it matched the precision of the ten item scales of the IPIP-50, and its criterion validity matched or exceeded common brief Big Five measures. R and Qualtrics versions are available for research use.",
+      "icon": "adaptive",
+      "papers": ["xi2026cat"]
+    },
+    {
+      "area": "measurement",
+      "title": "Cognition in daily life",
+      "summary": "DRAFT: The Cognitive Variability Battery has nine smartphone tests of attentional control, processing speed, and episodic memory. Participants took it three times a day for three weeks. Across 139 adults and 11,345 sessions, attentional control tests showed the strongest reliability and the clearest sensitivity to momentary stress and affect. The paper also gives power analyses for planning studies.",
+      "icon": "variability",
+      "papers": ["aschenbrenner2026battery"]
+    },
+    {
+      "area": "measurement",
+      "title": "Measuring personality in context",
+      "summary": "DRAFT: A change in someone's answers can mean their state changed, or that an item works differently in that situation. I embed a graded response model in Bayesian moderated nonlinear factor analysis to separate the two within persons.",
+      "icon": "latent",
+      "papers": []
+    },
+    {
+      "area": "measurement",
+      "title": "Self and peer reports at work",
+      "summary": "DRAFT: Agreement between self and others is well studied for traits but rarely for momentary states. With experience sampling data from employees, I use crossed effects Bayesian multilevel models to separate how observable a state is, how accurate judges are, and response bias.",
+      "icon": "work",
+      "papers": []
+    },
+    {
+      "area": "ai",
+      "title": "LifeSentence",
+      "summary": "DRAFT: We wrote the life events of about 65,000 German Socio-Economic Panel participants as structured sentences and fine tuned a 24 billion parameter language model on them with instructions. On a benchmark of 18 tasks it outperformed classical and deep learning baselines, roughly tripling accuracy for predicting both which event happens and when, and it recovered known patterns such as the education premium, the gender wage gap, and the motherhood penalty without being trained to.",
+      "icon": "language",
+      "papers": ["liu2026lifesentence"]
+    },
+    {
+      "area": "ai",
+      "title": "Idiographic Personality Gaussian Process",
+      "summary": "DRAFT: A Gaussian process coregionalization model for ordinal survey data that keeps a shared trait structure while letting each person deviate from it, scaled with stochastic variational inference. It predicted responses better and recovered individual factor structures more accurately than benchmark methods, and it found distinct personality clusters in real data.",
+      "icon": "latent",
+      "papers": ["chen2024ipgp"]
+    },
+    {
+      "area": "ai",
+      "title": "Bias in AI interviews",
+      "summary": "DRAFT: Hiring increasingly relies on language from interviews conducted and scored by AI. I treat the scoring pipeline as a multistage measurement system and trace where group differences in word choice, syntax, and meaning enter language model embeddings, construct scores, and hiring recommendations. Controlled experiments test whether debiasing reduces adverse impact without hurting validity.",
+      "icon": "work",
+      "papers": []
+    }
+  ]
+}

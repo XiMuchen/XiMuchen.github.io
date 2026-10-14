@@ -1,0 +1,157 @@
+/*
+  components.css: reusable pieces used on several pages: buttons, section
+  headings, publication rows, tool rows, icon tiles, the updates list, and
+  figure captions.
+
+  Safe to edit: spacing, corner shapes, column widths.
+  Colors and sizes come from tokens.css.
+*/
+
+/* ===== Sections ===== */
+.section { padding-top: var(--space-7); }
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.section__more { font-weight: 500; }
+
+/* ===== Buttons ===== */
+.buttons { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target);
+  padding: 0 1.1rem;
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+}
+.button:hover { background: var(--tint); }
+.button--primary {                 /* the one red button per page */
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+.button--primary:hover { background: var(--accent); filter: brightness(1.08); }
+
+/* ===== Icon tile: an arch, echoing the photo frame ===== */
+.tile {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 5rem;
+  border-radius: 999px 999px 6px 6px;
+  background: var(--tint);
+  color: var(--line);
+}
+.tile .icon { width: 2.25rem; height: 2.25rem; }
+
+/* ===== Publication rows ===== */
+.pub-list { list-style: none; margin: 0; padding: 0; }
+.pub {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--tint-strong);
+}
+.pub__year { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.pub__title { font-size: var(--size-body); font-weight: 700; line-height: 1.3; margin: 0 0 var(--space-1); max-width: var(--measure); }
+.pub__meta { color: var(--muted); margin: 0 0 var(--space-2); max-width: var(--measure); }
+.pub__links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 var(--space-4); margin: 0; padding: 0; list-style: none; }
+.pub__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: var(--target);
+  font-weight: 500;
+}
+
+/* ===== Cite box (opens under a paper) ===== */
+.cite summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: var(--target);
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+.cite summary::-webkit-details-marker { display: none; }
+.pub__links li:has(> .cite[open]) { flex-basis: 100%; }
+.cite__panel {
+  margin: var(--space-2) 0 var(--space-3);
+  padding: var(--space-4);
+  border-radius: 10px;
+  background: var(--tint);
+  max-width: 48rem;
+}
+.cite__label { font-weight: 700; margin: 0 0 var(--space-1); }
+.cite__label + * { margin-top: 0; }
+.cite__apa { margin-bottom: var(--space-2); overflow-wrap: anywhere; }
+.cite__bib {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--size-small);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.cite__copy { margin-bottom: var(--space-4); }
+.cite__copy:last-of-type { margin-bottom: 0; }
+
+/* ===== Tool and data rows ===== */
+.tool-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-5); }
+.tool {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+.tool__name { margin: var(--space-2) 0 var(--space-1); }
+.tool__kind { color: var(--muted); font-size: var(--size-small); font-weight: 600; margin: 0 0 var(--space-1); }
+.tool__what { color: var(--muted); margin-bottom: var(--space-1); }
+.tool .pub__links { grid-column: auto; }
+
+/* ===== Recent updates ===== */
+.news-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); max-width: 48rem; }
+.news {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--space-3);
+}
+.news__date { color: var(--muted); font-variant-numeric: tabular-nums; }
+.news p { margin: 0; }
+
+/* ===== Figures ===== */
+.figure { margin: 0; }
+.figure figcaption {
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: var(--size-small);
+  line-height: 1.5;
+  max-width: 46ch;
+}
+
+@media (max-width: 560px) {
+  .pub { grid-template-columns: 1fr; }
+  .pub__links { grid-column: 1; }
+  .news { grid-template-columns: 1fr; gap: 0; }
+  .tile { width: 3.75rem; height: 4.25rem; }
+  .tile .icon { width: 1.9rem; height: 1.9rem; }
+}

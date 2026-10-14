@@ -1,0 +1,58 @@
+{
+  "_about": "Tools and datasets shown on the Tools page. 'type' decides the section: \"tool\" or \"data\". Items with \"featured\": true also appear on the home page. To add one, copy a block and change the values. 'icon' is an id from assets/img/icons.svg without the 'i-'. Each link needs a label, an href (web address), and an icon. Leave \"links\": [] empty if nothing is public yet. Later, a tool can get its own page in tools/<name>/index.html; put that path in \"page\".",
+
+  "tools": [
+    {
+      "type": "tool",
+      "name": "Big Five Adaptive Inventory",
+      "kind": "Assessment (R and Qualtrics)",
+      "icon": "adaptive",
+      "summary": "A computerized adaptive Big Five test based on item response theory. Each next item is chosen from the current trait estimate, so a few items per trait give precise scores.",
+      "links": [],
+      "todo": "Links to the R and Qualtrics versions",
+      "featured": true
+    },
+    {
+      "type": "tool",
+      "name": "Dynamic Contingency Model",
+      "kind": "Model code (Stan)",
+      "icon": "dynamics",
+      "summary": "A Bayesian dynamic structural equation model of how behavior and situations relate in the same moment and over time, adjusted for unequal time between surveys.",
+      "links": [
+        { "label": "Read the preprint", "href": "https://doi.org/10.31234/osf.io/nheu4_v1", "icon": "preprint" }
+      ],
+      "todo": "Link to the code",
+      "featured": true
+    },
+    {
+      "type": "tool",
+      "name": "DILT model",
+      "kind": "Model code (PyTorch)",
+      "icon": "latent",
+      "summary": "The Dynamic Individualized Latent Trait model: a shared trait structure plus each person's own item structure and dynamics over time and context.",
+      "links": [],
+      "todo": "Link to the code, when public"
+    },
+    {
+      "type": "tool",
+      "name": "Cognitive Variability Battery",
+      "kind": "Assessment (smartphone)",
+      "icon": "variability",
+      "summary": "Nine smartphone tests of attentional control, processing speed, and episodic memory, designed to be taken repeatedly in daily life.",
+      "links": [
+        { "label": "Read the paper", "href": "https://doi.org/10.3758/s13428-026-03128-4", "icon": "paper" }
+      ]
+    },
+    {
+      "type": "data",
+      "name": "VISTA",
+      "kind": "Dataset (Version 1, 2025)",
+      "icon": "dataset",
+      "summary": "Variability in Individuals across Situations, Traits, and Adaptations: experience sampling data on personality states and situations from undergraduates.",
+      "links": [
+        { "label": "Open on OSF", "href": "https://osf.io/eu7rz/", "icon": "dataset" }
+      ],
+      "featured": true
+    }
+  ]
+}

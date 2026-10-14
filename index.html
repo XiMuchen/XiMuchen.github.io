@@ -1,0 +1,215 @@
+<!doctype html>
+<!--
+  index.html: the home page.
+
+  Safe to edit: any text between the "EDIT HERE" markers.
+  Shared pieces live elsewhere:
+  - Name, menu, footer links: content/site.json
+  - Recent updates list: content/news.json
+  - Colors and fonts: assets/css/tokens.css
+  The header and footer below are backups shown only if JavaScript fails;
+  normally they are rebuilt from content/site.json.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EDIT HERE: page title and description (shown in search results and link previews) -->
+  <title>Muchen Xi</title>
+  <meta name="description" content="Muchen Xi, postdoctoral research fellow at Rice University. Research on personality dynamics, psychological measurement, and AI for psychological science.">
+  <meta property="og:title" content="Muchen Xi">
+  <meta property="og:description" content="Personality dynamics, psychological measurement, and AI for psychological science.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/muchen-xi.jpg">
+  <meta name="twitter:card" content="summary">
+  <!-- END EDIT -->
+  <script src="assets/js/theme-init.js"></script>
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/bibtex.js" defer></script>
+  <script src="assets/js/apa.js" defer></script>
+  <script src="assets/js/publications.js" defer></script>
+  <script src="assets/js/tools.js" defer></script>
+  <script src="assets/js/news.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-name" href="index.html">Muchen Xi</a>
+      <nav class="site-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="tools/index.html">Tools</a></li>
+          <li><a href="files/cv.pdf">CV</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- SCREEN 1: profile with education, then bio and interests. Sized to fit one laptop screen. -->
+    <section class="screen screen--first wrap" aria-labelledby="profile-name">
+
+      <!-- ===== EDIT HERE: profile (photo, name, role, links, education) ===== -->
+      <div class="profile">
+        <img class="profile__photo" src="assets/img/muchen-xi.jpg" width="810" height="810" alt="Portrait of Muchen Xi, smiling, wearing glasses and a blue suit jacket, outdoors.">
+        <div class="profile__text">
+          <h1 class="profile__name" id="profile-name">Muchen Xi</h1>
+          <p class="profile__role">Postdoctoral Research Fellow</p>
+          <p class="profile__place">Department of Psychological Sciences, Rice University</p>
+          <ul class="profile__links">
+            <li><a class="button button--primary" href="mailto:mx22@rice.edu"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-mail"></use></svg>Email me</a></li>
+            <li><a class="button" href="https://scholar.google.com/citations?user=0nWSjbAAAAAJ"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-scholar"></use></svg>Google Scholar</a></li>
+            <li><a class="button" href="https://orcid.org/0000-0003-3939-9568"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-orcid"></use></svg>ORCID</a></li>
+            <li><a class="button" href="files/cv.pdf"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-download"></use></svg>CV</a></li>
+          </ul>
+        </div>
+        <div class="facts profile__edu">
+          <h2>Education</h2>
+          <ul class="degrees">
+            <li><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-scholar"></use></svg><div><strong>PhD, Social and Personality Psychology</strong><span>Washington University in St. Louis, 2026</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-scholar"></use></svg><div><strong>MA, Social and Personality Psychology</strong><span>Washington University in St. Louis, 2023</span></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-scholar"></use></svg><div><strong>BS, Psychology</strong><span>University of Minnesota, Twin Cities, 2021</span></div></li>
+          </ul>
+        </div>
+      </div>
+      <!-- ===== END EDIT ===== -->
+
+      <!-- ===== EDIT HERE: bio and interests (two columns side by side) ===== -->
+      <div class="intro">
+        <div class="intro__bio">
+          <h2>About</h2>
+          <p><span class="draft">I am a Postdoctoral Research Fellow in the Department of Psychological Sciences at Rice University, working with Dr. Tianjun Sun. I received my PhD in Social and Personality Psychology from Washington University in St. Louis in 2026, advised by Dr. Joshua J. Jackson.</span></p>
+          <p><span class="draft">I study personality dynamics: how behavior varies across situations and over time, and how people differ in these patterns. I develop Bayesian, psychometric, and machine learning methods for intensive longitudinal and language data.</span></p>
+        </div>
+
+        <div class="facts">
+          <h2>Interests</h2>
+          <div class="interests">
+            <div class="interest">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-dynamics"></use></svg>Content</h3>
+              <ul class="tags">
+                <li>Personality processes and dynamics</li>
+                <li>Individual differences</li>
+                <li>Personality development</li>
+                <li>Person and environment transactions</li>
+              </ul>
+            </div>
+            <div class="interest">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-latent"></use></svg>Methods</h3>
+              <ul class="tags">
+                <li>Bayesian inference</li>
+                <li>Multilevel and structural equation models</li>
+                <li>Time series and dynamic systems</li>
+                <li>Intensive longitudinal data</li>
+                <li>Item response theory</li>
+                <li>Adaptive testing</li>
+                <li>Gaussian processes</li>
+                <li>Language models</li>
+              </ul>
+            </div>
+            <div class="interest">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-work"></use></svg>Applications</h3>
+              <ul class="tags">
+                <li>Personnel selection</li>
+                <li>Workplace assessment</li>
+                <li>Future of work</li>
+                <li>Employee well-being</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===== END EDIT ===== -->
+    </section>
+
+    <!-- SCREEN 2: research areas and recent updates -->
+    <section class="screen wrap" aria-label="Research and recent updates">
+
+      <!-- ===== EDIT HERE: three research lines ===== -->
+      <section class="block" aria-labelledby="research-title">
+        <div class="section__head">
+          <h2 id="research-title">Research</h2>
+          <a class="section__more" href="research.html">More about my research</a>
+        </div>
+        <ul class="lines">
+          <li class="line">
+            <span class="tile"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-dynamics"></use></svg></span>
+            <h3><a href="research.html#dynamics">Person and situation dynamics</a></h3>
+            <p><span class="draft">Bayesian models of how behavior varies across situations and over time, and of how people differ in these patterns.</span></p>
+          </li>
+          <li class="line">
+            <span class="tile"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-adaptive"></use></svg></span>
+            <h3><a href="research.html#measurement">Psychological measurement</a></h3>
+            <p><span class="draft">Adaptive tests, models of how items work across situations, and smartphone tests of cognition in daily life.</span></p>
+          </li>
+          <li class="line">
+            <span class="tile"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-language"></use></svg></span>
+            <h3><a href="research.html#ai">AI and LLMs</a></h3>
+            <p><span class="draft">Gaussian process and language models for individualized assessment, life course prediction, and auditing bias in AI interviews.</span></p>
+          </li>
+        </ul>
+      </section>
+      <!-- ===== END EDIT ===== -->
+
+      <!-- Recent updates: edit content/news.json, not this page. -->
+      <section class="block" aria-labelledby="news-title">
+        <div class="section__head">
+          <h2 id="news-title">Recent updates</h2>
+        </div>
+        <ol class="news-list" id="news-list">
+          <li class="news"><p>Updates appear here when the page loads through the local server.</p></li>
+        </ol>
+      </section>
+    </section>
+
+    <!-- SCREEN 3: selected publications (papers marked selected = {true} in content/publications.bib) -->
+    <section class="screen wrap" aria-labelledby="pubs-title">
+      <div class="section__head">
+        <h2 id="pubs-title">Selected publications</h2>
+        <a class="section__more" href="publications.html">All publications</a>
+      </div>
+      <ol class="pub-list" id="selected-pubs">
+        <li class="pub"><p>Papers load from <a href="content/publications.bib">publications.bib</a>. See the <a href="publications.html">full list</a>.</p></li>
+      </ol>
+    </section>
+
+    <!-- SCREEN 4: tools and data (items marked "featured" in content/tools.json) -->
+    <section class="screen wrap" aria-labelledby="tools-title">
+      <div class="section__head">
+        <h2 id="tools-title">Tools and data</h2>
+        <a class="section__more" href="tools/index.html">All tools and data</a>
+      </div>
+      <ul class="tool-list" id="featured-tools">
+        <li class="tool"><p>Tools load from <a href="content/tools.json">tools.json</a>.</p></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__name">Muchen Xi</p>
+        <p class="site-footer__role">Postdoctoral Research Fellow<br>Department of Psychological Sciences, Rice University</p>
+      </div>
+      <ul class="site-footer__links">
+        <li><a href="mailto:mx22@rice.edu"><span>Email</span></a></li>
+        <li><a href="https://scholar.google.com/citations?user=0nWSjbAAAAAJ"><span>Google Scholar</span></a></li>
+        <li><a href="https://orcid.org/0000-0003-3939-9568"><span>ORCID</span></a></li>
+        <li><a href="content/publications.bib"><span>All publications as BibTeX</span></a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

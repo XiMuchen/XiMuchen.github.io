@@ -1,0 +1,6 @@
+{
+  "_about": "Recent updates shown on the home page, newest first. Add a new item at the TOP of the 'items' list, copying the shape of '_example'. 'date' is year-month (2026-10) or year-month-day. 'link' is optional: leave it as an empty string if there is none. While 'items' is empty, the Recent updates section is hidden.",
+  "_example": { "date": "2026-10", "text": "New preprint on adaptive Big Five testing.", "link": "https://example.org" },
+  "show_on_home": 4,
+  "items": []
+}

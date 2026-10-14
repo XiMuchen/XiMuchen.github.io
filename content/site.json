@@ -1,0 +1,28 @@
+{
+  "_about": "Site-wide facts used by every page's header and footer. Edit the values on the right side of each colon. Keep the quotes and commas.",
+
+  "name": "Muchen Xi",
+  "role": "Postdoctoral Research Fellow",
+  "department": "Department of Psychological Sciences",
+  "institution": "Rice University",
+  "email": "mx22@rice.edu",
+
+  "_self_help": "How your name is spelled in publications.bib, so it can be shown in bold in author lists.",
+  "self": { "last": "Xi", "first_initial": "M" },
+
+  "_nav_help": "The main menu, in order. 'href' is the page file, relative to the site's main folder.",
+  "nav": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "Research", "href": "research.html" },
+    { "label": "Publications", "href": "publications.html" },
+    { "label": "Tools", "href": "tools/index.html" },
+    { "label": "CV", "href": "files/cv.pdf" }
+  ],
+
+  "_links_help": "Profile links shown in the footer. 'icon' must match an id in assets/img/icons.svg without the 'i-' part.",
+  "links": [
+    { "label": "Email", "href": "mailto:mx22@rice.edu", "icon": "mail" },
+    { "label": "Google Scholar", "href": "https://scholar.google.com/citations?user=0nWSjbAAAAAJ", "icon": "scholar" },
+    { "label": "ORCID", "href": "https://orcid.org/0000-0003-3939-9568", "icon": "orcid" }
+  ]
+}

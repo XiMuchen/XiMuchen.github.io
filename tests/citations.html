@@ -1,0 +1,167 @@
+<!doctype html>
+<!--
+  tests/citations.html: checks that the citation code writes correct APA 7
+  references and BibTeX. Open it through the local server:
+  http://localhost:8000/tests/citations.html
+  Every row should say "pass". If you change assets/js/apa.js or bibtex.js,
+  open this page again.
+
+  Safe to edit: add a test by copying one object in the TESTS list below.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Citation tests</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <style>
+    main { max-width: 72rem; margin: 0 auto; padding: 2rem 1rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.6rem; border-top: 1px solid var(--tint-strong); }
+    td:nth-child(2), td:nth-child(3) { overflow-wrap: anywhere; }
+    .pass { color: var(--line); font-weight: 700; }
+    .fail { color: var(--on-accent); background: var(--accent); font-weight: 700; }
+    #summary { font-size: 1.5rem; font-weight: 700; }
+  </style>
+  <script src="../assets/js/bibtex.js"></script>
+  <script src="../assets/js/apa.js"></script>
+</head>
+<body>
+<main>
+  <h1>Citation tests</h1>
+  <p id="summary">Running…</p>
+  <table>
+    <thead><tr><th>Case</th><th>Expected</th><th>Actual</th><th>Result</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</main>
+<script>
+// Each test: a name, one BibTeX entry, and what the APA text (or check) should be.
+// "expect" compares the plain text. "contains" checks the HTML or BibTeX output instead.
+function many(n) {
+  var people = [];
+  for (var i = 1; i <= n; i++) people.push("Author" + i + ", A.");
+  return people.join(" and ");
+}
+function listed(n) {
+  var people = [];
+  for (var i = 1; i <= n; i++) people.push("Author" + i + ", A.");
+  return people;
+}
+
+var TESTS = [
+  { name: "Journal article, two authors, DOI, en dash pages",
+    bib: "@article{a, author={Xi, Muchen and Jackson, Joshua J.}, title={Behavioral variability as a function of people, situations, and their interaction}, journal={Journal of Personality and Social Psychology}, year={2025}, volume={129}, number={6}, pages={1163--1184}, doi={10.1037/pspp0000563}}",
+    expect: "Xi, M., & Jackson, J. J. (2025). Behavioral variability as a function of people, situations, and their interaction. Journal of Personality and Social Psychology, 129(6), 1163–1184. https://doi.org/10.1037/pspp0000563" },
+  { name: "Journal and volume are italic",
+    bib: "@article{a, author={Xi, Muchen}, title={T}, journal={Journal of Personality}, year={2025}, volume={9}, number={2}, pages={1--5}}",
+    contains: "<i>Journal of Personality</i>, <i>9</i>(2)" },
+  { name: "One author",
+    bib: "@article{a, author={Smith, Jane}, title={One author}, journal={J}, year={2020}, volume={1}, pages={1--2}}",
+    expect: "Smith, J. (2020). One author. J, 1, 1–2." },
+  { name: "Three authors",
+    bib: "@article{a, author={Aa, Anna and Bb, Bo and Cc, Cy}, title={T}, journal={J}, year={2020}}",
+    expect: "Aa, A., Bb, B., & Cc, C. (2020). T. J." },
+  { name: "Twenty authors: all listed",
+    bib: "@article{a, author={" + many(20) + "}, title={T}, journal={J}, year={2020}}",
+    expect: listed(19).join(", ") + ", & Author20, A. (2020). T. J." },
+  { name: "Twenty-one authors: first 19, ellipsis, last",
+    bib: "@article{a, author={" + many(21) + "}, title={T}, journal={J}, year={2020}}",
+    expect: listed(19).join(", ") + ", . . . Author21, A. (2020). T. J." },
+  { name: "Group author",
+    bib: "@book{a, author={{American Psychological Association}}, title={Publication manual of the American Psychological Association}, publisher={American Psychological Association}, year={2020}}",
+    expect: "American Psychological Association. (2020). Publication manual of the American Psychological Association. American Psychological Association." },
+  { name: "In press",
+    bib: "@article{a, author={Xi, Muchen}, title={A paper}, journal={Assessment}, year={in press}}",
+    expect: "Xi, M. (in press). A paper. Assessment." },
+  { name: "Preprint under review, with repository and DOI",
+    bib: "@misc{a, author={Xi, Muchen and Jackson, Joshua J.}, title={The {Dynamic Contingency Model}: Integrating competing theories of personality processes}, howpublished={PsyArXiv}, year={2026}, doi={10.31234/osf.io/nheu4_v1}, status={under review}}",
+    expect: "Xi, M., & Jackson, J. J. (2026). The Dynamic Contingency Model: Integrating competing theories of personality processes [Preprint]. PsyArXiv. https://doi.org/10.31234/osf.io/nheu4_v1" },
+  { name: "Preprint title is italic",
+    bib: "@misc{a, author={Xi, Muchen}, title={A preprint}, howpublished={arXiv}, year={2026}, url={https://arxiv.org/abs/1}, status={under review}}",
+    contains: "<i>A preprint</i> [Preprint]." },
+  { name: "Under review, no preprint",
+    bib: "@unpublished{a, author={Xi, Muchen and Erin, E. L. and Jackson, Joshua J. and Montgomery, J. M.}, title={Short, precise, and valid: A computerized adaptive approach to measuring the {Big Five}}, year={2026}, status={under review}}",
+    expect: "Xi, M., Erin, E. L., Jackson, J. J., & Montgomery, J. M. (2026). Short, precise, and valid: A computerized adaptive approach to measuring the Big Five [Manuscript submitted for publication]." },
+  { name: "In preparation, no year",
+    bib: "@unpublished{a, author={Xi, Muchen and Dugan, K.}, title={Planned missingness designs}, status={in preparation}}",
+    expect: "Xi, M., & Dugan, K. (n.d.). Planned missingness designs [Manuscript in preparation]." },
+  { name: "Book chapter: six editors, a suffix, a title ending in ?",
+    bib: "@incollection{a, author={Xi, Muchen and Jackson, Joshua J.}, title={How and why does personality change across the lifespan?}, booktitle={Handbook of the science of existential psychology}, editor={Vail, III, Kenneth E. and Van Tongeren, Daryl R. and Schlegel, Rebecca J. and Greenberg, Jeff and King, Laura A. and Ryan, Richard M.}, publisher={Guilford Press}, year={2026}}",
+    expect: "Xi, M., & Jackson, J. J. (2026). How and why does personality change across the lifespan? In K. E. Vail III, D. R. Van Tongeren, R. J. Schlegel, J. Greenberg, L. A. King, & R. M. Ryan (Eds.), Handbook of the science of existential psychology. Guilford Press." },
+  { name: "Book chapter: one editor, pages",
+    bib: "@incollection{a, author={Xi, Muchen}, title={A chapter}, booktitle={A book}, editor={Lee, Ann}, pages={10--20}, publisher={Press}, year={2024}}",
+    expect: "Xi, M. (2024). A chapter. In A. Lee (Ed.), A book (pp. 10–20). Press." },
+  { name: "Conference paper with volume (NeurIPS style)",
+    bib: "@inproceedings{a, author={Chen, Y. and Xi, M. and Montgomery, J. and Jackson, J. and Garnett, R.}, title={Idiographic personality {Gaussian} process for psychological assessment}, booktitle={Advances in Neural Information Processing Systems}, volume={37}, pages={54670--54691}, year={2024}, url={https://arxiv.org/abs/2407.04970}}",
+    expect: "Chen, Y., Xi, M., Montgomery, J., Jackson, J., & Garnett, R. (2024). Idiographic personality Gaussian process for psychological assessment. Advances in Neural Information Processing Systems, 37, 54670–54691. https://arxiv.org/abs/2407.04970" },
+  { name: "Conference paper without volume, with editors",
+    bib: "@inproceedings{a, author={Xi, Muchen}, title={A talk paper}, booktitle={Proceedings of the meeting}, editor={Lee, Ann and Park, Bo}, pages={1--10}, publisher={ACM}, year={2023}}",
+    expect: "Xi, M. (2023). A talk paper. In A. Lee & B. Park (Eds.), Proceedings of the meeting (pp. 1–10). ACM." },
+  { name: "Article number instead of pages",
+    bib: "@article{a, author={Aschenbrenner, Andrew J. and Xi, Muchen}, title={Developing a psychological test battery to measure cognition in daily life}, journal={Behavior Research Methods}, year={2026}, volume={58}, number={9}, eid={247}, doi={10.3758/s13428-026-03128-4}}",
+    expect: "Aschenbrenner, A. J., & Xi, M. (2026). Developing a psychological test battery to measure cognition in daily life. Behavior Research Methods, 58(9), Article 247. https://doi.org/10.3758/s13428-026-03128-4" },
+  { name: "Advance online publication (no volume yet)",
+    bib: "@article{a, author={Xi, Muchen}, title={Early view}, journal={Journal of Personality}, year={2026}, doi={https://doi.org/10.1/abc}}",
+    expect: "Xi, M. (2026). Early view. Journal of Personality. https://doi.org/10.1/abc" },
+  { name: "Missing author, year, and journal: nothing says undefined",
+    bib: "@article{a, title={Only a title}}",
+    expect: "Only a title. (n.d.)." },
+  { name: "Completely empty entry",
+    bib: "@misc{a, note={nothing}}",
+    expect: "[Untitled]. (n.d.)." },
+  { name: "Accents in names",
+    bib: "@article{a, author={M{\\\"u}ller, Hans and Garc{\\'i}a, Jos{\\'e}}, title={T}, journal={J}, year={2020}}",
+    expect: "Müller, H., & García, J. (2020). T. J." },
+  { name: "Title case kept as written; braces removed",
+    bib: "@article{a, author={Xi, Muchen}, title={Using {Bayesian} models with {DSEM} in daily life}, journal={J}, year={2020}}",
+    expect: "Xi, M. (2020). Using Bayesian models with DSEM in daily life. J." },
+  { name: "Hyphenated first name and \"First Last\" order",
+    bib: "@article{a, author={Jean-Paul Ladd-Thomas and Xi, Muchen}, title={T}, journal={J}, year={2020}}",
+    expect: "Ladd-Thomas, J.-P., & Xi, M. (2020). T. J." },
+  { name: "Ellipsis and ampersand in a title (LaTeX drops the space after \\ldots)",
+    bib: "@article{a, author={Xi, Muchen}, title={If\\ldots then\\ldots{} profiles \\& variability}, journal={J}, year={2020}}",
+    expect: "Xi, M. (2020). If…then… profiles & variability. J." },
+  { name: "Dissertation",
+    bib: "@phdthesis{a, author={Xi, Muchen}, title={Dynamic {Individualized} {Latent} {Trait} model}, school={Washington University in St. Louis}, year={2026}}",
+    expect: "Xi, M. (2026). Dynamic Individualized Latent Trait model [Doctoral dissertation, Washington University in St. Louis]." },
+  { name: "Copied BibTeX drops website-only fields",
+    bib: "@article{key1, author = {Xi, Muchen}, title = {T}, journal = {J}, year = {2020}, doi = {10.1/x}, selected = {true}, theme = {dynamics}, preprint = {https://x}, status = {under review}}",
+    bibtex: "@article{key1,\n  author = {Xi, Muchen},\n  title = {T},\n  journal = {J},\n  year = {2020},\n  doi = {10.1/x}\n}" },
+  { name: "Copied BibTeX keeps quoted values and numbers as written",
+    bib: "@article{key2, author = \"Xi, Muchen\", year = 2020, title = {A {T}itle}, code = {https://c}}",
+    bibtex: "@article{key2,\n  author = \"Xi, Muchen\",\n  year = 2020,\n  title = {A {T}itle}\n}" }
+];
+
+var rows = document.getElementById("rows");
+var passed = 0;
+function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+TESTS.forEach(function (t) {
+  var entry = Bib.parse(t.bib)[0];
+  var expected, actual, ok;
+  try {
+    if (t.bibtex) {
+      expected = t.bibtex; actual = Bib.toBibtex(entry); ok = actual === expected;
+    } else if (t.contains) {
+      expected = "HTML contains: " + t.contains; actual = APA.format(entry).html; ok = actual.indexOf(t.contains) !== -1;
+    } else {
+      expected = t.expect; actual = APA.format(entry).text; ok = actual === expected;
+    }
+    if (/undefined|NaN/.test(actual)) ok = false;
+  } catch (e) {
+    actual = "Error: " + e.message; ok = false;
+  }
+  if (ok) passed++;
+  var tr = document.createElement("tr");
+  tr.innerHTML = "<td>" + esc(t.name) + "</td><td><pre style='white-space:pre-wrap;margin:0'>" + esc(expected) +
+    "</pre></td><td><pre style='white-space:pre-wrap;margin:0'>" + esc(actual) + "</pre></td><td class='" +
+    (ok ? "pass'>pass" : "fail'>FAIL") + "</td>";
+  rows.appendChild(tr);
+});
+document.getElementById("summary").textContent = passed + " of " + TESTS.length + " tests pass";
+document.getElementById("summary").setAttribute("data-result", passed === TESTS.length ? "all-pass" : "some-fail");
+</script>
+</body>
+</html>

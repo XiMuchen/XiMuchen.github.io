@@ -1,0 +1,131 @@
+/*
+  layout.css: the page frame shared by every page: content width, the
+  header with the main menu, and the footer.
+
+  Safe to edit: spacing and sizes. Colors come from tokens.css.
+*/
+
+/* Content column with even space at the page edges. */
+.wrap,
+.site-header__inner,
+.site-footer__inner {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main { display: block; }
+main:focus { outline: none; }
+
+/* ===== Header: stays at the top while scrolling ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-bottom: 1px solid var(--tint-strong);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--header-h);
+}
+
+.site-name {
+  margin-right: auto;
+  font-weight: 700;
+  font-size: var(--size-lead);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+/* ===== Main menu ===== */
+.site-nav ul {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.site-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--target);
+  padding: 0 var(--space-3);
+  color: var(--muted);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--text); }
+.site-nav a[aria-current="page"] { color: var(--text); font-weight: 700; }
+.site-nav a[aria-current="page"]::after {   /* short red underline: you are here */
+  content: "";
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 6px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* ===== Day/night button ===== */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--target);
+  height: var(--target);
+  padding: 0;
+  border: 1px solid var(--tint-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--tint); }
+.theme-toggle .icon { width: 20px; height: 20px; }
+
+/* ===== Footer ===== */
+.site-footer {
+  margin-top: var(--space-7);
+  background: var(--block);
+  color: var(--on-block);
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-6);
+}
+.site-footer p { margin: 0; }
+.site-footer__name { font-size: var(--size-h2); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+.site-footer__role { color: var(--on-block-muted); margin-top: var(--space-2) !important; }
+.site-footer__links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+.site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target);
+  text-decoration: none;
+}
+.site-footer__links a:hover span { text-decoration: underline; }
+
+/* ===== Narrow screens: name and switch on one row, the menu below ===== */
+@media (max-width: 760px) {
+  .site-header__inner { flex-wrap: wrap; gap: 0 var(--space-3); padding-top: var(--space-2); }
+  .site-nav {
+    order: 3;
+    flex: 1 0 100%;
+    min-width: 0;
+    overflow-x: auto;             /* the menu scrolls sideways if it does not fit */
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: calc(var(--gutter) - var(--space-3));
+    scrollbar-width: none;
+  }
+}

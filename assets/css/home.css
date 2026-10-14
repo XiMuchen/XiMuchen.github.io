@@ -1,0 +1,167 @@
+/*
+  home.css: styles used only on the home page.
+
+  The home page is split into "screens": each <section class="screen"> fills
+  one laptop screen, and scrolling settles at the top of the next screen, so
+  no section is cut in half. Screen 1 holds the profile, bio, interests, and
+  education side by side.
+
+  Safe to edit: sizes and spacing. Colors come from tokens.css.
+  To turn off the settle-on-each-screen scrolling, delete the line marked
+  "SNAP" below.
+*/
+
+/* ===== Screens ===== */
+html { scroll-padding-top: var(--header-h); }   /* keeps headings clear of the menu bar */
+
+.screen { padding-block: var(--space-6); }
+.screen .section__head { margin-bottom: var(--space-4); }
+.block + .block { margin-top: var(--space-6); }
+
+/* On laptop and desktop screens tall enough to hold a full screen of content */
+@media (min-width: 761px) and (min-height: 600px) {
+  html { scroll-snap-type: y proximity; }       /* SNAP: settle at the top of each screen */
+  .screen {
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    padding-block: var(--space-4);
+  }
+}
+
+/* ===== Profile: photo, name, and links, with education on the right ===== */
+.profile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 24rem);
+  align-items: center;
+  gap: var(--space-5);
+}
+.profile__photo {
+  width: clamp(7rem, 4.5rem + 4.5vw, 9.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  background: var(--tint);
+  box-shadow: 0 0 0 5px var(--bg), 0 0 0 6.5px var(--tint-strong);  /* thin ring around the photo */
+}
+.profile__name {
+  font-size: clamp(2.5rem, 1.9rem + 2vw, 3.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+.profile__role { font-size: var(--size-lead); font-weight: 500; line-height: 1.3; margin: 0; }
+.profile__place { color: var(--muted); margin: var(--space-1) 0 var(--space-3); }
+.profile__links { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.profile__edu {
+  align-self: center;
+  padding-left: var(--space-4);
+  border-left: 1px solid var(--tint-strong);
+}
+
+/* ===== Bio and interests: two columns ===== */
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--tint-strong);
+}
+.intro h2, .profile__edu h2 { font-size: var(--size-lead); margin-bottom: var(--space-3); }
+.intro__bio p { font-size: var(--size-body); line-height: 1.6; max-width: 70ch; margin-bottom: var(--space-3); }
+
+.facts h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.0625rem;
+  letter-spacing: 0;
+  margin: var(--space-3) 0 var(--space-1);
+}
+.facts h2 + h3 { margin-top: 0; }
+.facts h3 .icon { color: var(--line); }
+
+/* Interests: three groups of keyword tags */
+.interests { display: grid; gap: var(--space-3); }
+.interest h3 { margin-top: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.tags li {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Degrees */
+.degrees { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-3); }
+.degrees li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-2); align-items: start; }
+.degrees .icon { margin-top: 0.15em; color: var(--line); }
+.degrees strong { display: block; font-size: 1rem; font-weight: 600; line-height: 1.35; }
+.degrees span { color: var(--muted); font-size: 0.9375rem; }
+
+/* ===== Three research lines ===== */
+.lines {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.line h3 { margin: var(--space-3) 0 var(--space-2); }
+.line p { color: var(--muted); }
+
+/* ===== Selected papers (2 by 2) and featured tools (3 across) on the home page,
+   so each fits on one screen. The full lists on their own pages stay one column. ===== */
+@media (min-width: 900px) {
+  #selected-pubs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-5);
+  }
+  #selected-pubs .pub { grid-template-columns: 3.5rem 1fr; }
+  #featured-tools { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #featured-tools .tool { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); align-content: start; }
+}
+
+/* ===== Shorter laptop screens: tighten spacing so screen 1 still fits ===== */
+@media (min-width: 761px) and (max-height: 780px) {
+  .screen { padding-block: var(--space-3); }
+  .intro { margin-top: var(--space-3); padding-top: var(--space-3); }
+  .intro h2, .profile__edu h2 { margin-bottom: var(--space-2); }
+  .intro__bio p { line-height: 1.5; }
+  .tags li { padding-block: 0.1rem; }
+  .degrees { gap: var(--space-2); }
+}
+
+/* ===== Narrower screens ===== */
+@media (max-width: 1100px) {
+  .profile { grid-template-columns: auto minmax(0, 1fr); }
+  .profile__edu { grid-column: 1 / -1; padding: var(--space-4) 0 0; border-left: 0; border-top: 1px solid var(--tint-strong); }
+  .profile__edu .degrees { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .lines { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+  .line { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); }
+  .line .tile { grid-row: span 3; }
+  .line h3 { margin-top: var(--space-2); }
+  .intro { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+}
+@media (max-width: 560px) {
+  .profile__edu .degrees { grid-template-columns: minmax(0, 1fr); }
+  /* Photo stays beside the name, just smaller; the buttons move below both. */
+  .profile { gap: var(--space-3) var(--space-4); }
+  .profile__photo { grid-row: 1 / 4; align-self: center; width: 6.5rem; box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--tint-strong); }
+  .profile__text { display: contents; }
+  .profile__name, .profile__role, .profile__place { grid-column: 2; }
+  .profile__name { align-self: end; margin: 0; }
+  .profile__place { margin-bottom: 0; }
+  .profile__links, .profile__edu { grid-column: 1 / -1; }
+}

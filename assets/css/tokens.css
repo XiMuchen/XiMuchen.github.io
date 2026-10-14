@@ -1,0 +1,118 @@
+/*
+  tokens.css: every color, font, size, and spacing value on the site.
+
+  Safe to edit: any value below. Change a color here and it changes
+  everywhere. Do not put colors or font sizes in any other CSS file.
+
+  Two themes:
+  - Day theme is the first block (:root).
+  - Night theme is written twice below (once for "follow my computer's
+    setting", once for "the visitor picked night"). If you change a night
+    color, change it in BOTH night blocks.
+*/
+
+/* The font file lives in assets/fonts/. License: assets/fonts/OFL.txt */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque-latin-ext.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ===== EDIT HERE: day theme colors ===== */
+:root {
+  color-scheme: light;
+  --bg: #E6EAF6;        /* page background (paper) */
+  --text: #0D1B3E;      /* main text (ink) */
+  --muted: #4A5677;     /* secondary text: dates, venues, captions */
+  --line: #3A4FA3;      /* curves, scale ticks, links */
+  --tint: #C5CEF0;      /* curve fills, quiet blocks */
+  --tint-strong: #AEB9E8; /* a slightly deeper tint for hover */
+  --accent: #C2381B;    /* the one red: current page, red curve, main button */
+  --on-accent: #FFFFFF; /* text placed on top of the red */
+  --block: #0D1B3E;     /* dark band (footer) */
+  --on-block: #E6EAF6;  /* text on the dark band */
+  --on-block-muted: #A7B3DD;
+}
+
+/* ===== EDIT HERE: night theme colors (copy 1 of 2) ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0D1B3E;
+    --text: #E6EAF6;
+    --muted: #A7B3DD;
+    --line: #9DB0FF;
+    --tint: #1B2E63;
+    --tint-strong: #253C7A;
+    --accent: #E8573A;
+    --on-accent: #0D1B3E;
+    --block: #08122B;
+    --on-block: #E6EAF6;
+    --on-block-muted: #A7B3DD;
+  }
+}
+
+/* ===== night theme colors (copy 2 of 2, keep in sync with copy 1) ===== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0D1B3E;
+  --text: #E6EAF6;
+  --muted: #A7B3DD;
+  --line: #9DB0FF;
+  --tint: #1B2E63;
+  --tint-strong: #253C7A;
+  --accent: #E8573A;
+  --on-accent: #0D1B3E;
+  --block: #08122B;
+  --on-block: #E6EAF6;
+  --on-block-muted: #A7B3DD;
+}
+
+/* ===== EDIT HERE: type, sizes, spacing (same in both themes) ===== */
+:root {
+  --figure-bg: #FFFFFF;      /* behind research figures, which have white backgrounds */
+
+  --font: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+
+  /* Type scale, from small to huge. Values grow smoothly with screen width. */
+  --size-small: 0.875rem;                          /* 14px */
+  --size-body: 1.125rem;                           /* 18px */
+  --size-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);   /* 20 to 24px */
+  --size-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);    /* 28 to 36px */
+  --size-h1: clamp(2.5rem, 1.8rem + 3vw, 3.75rem);       /* 40 to 60px */
+  --size-name: clamp(3.25rem, 1.6rem + 7vw, 6rem);       /* 52 to 96px */
+
+  --leading-body: 1.55;
+  --leading-tight: 1.05;
+  --measure: 68ch;           /* longest comfortable line of text */
+
+  /* Spacing steps */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+
+  --page-max: 80rem;         /* widest the content gets */
+  --gutter: clamp(1rem, 4vw, 2.5rem); /* space at the page edges */
+  --stroke: 1.75px;          /* line width for icons and curves */
+  --target: 44px;            /* smallest tap target */
+  --header-h: 4.5rem;        /* height of the top menu bar */
+}

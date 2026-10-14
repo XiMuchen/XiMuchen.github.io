@@ -1,69 +1,11 @@
-# ============================================================================
-# Hugo Site .gitignore
-# ============================================================================
+# Files and folders git should never track or publish.
+# Safe to edit: add more lines, one pattern per line.
 
-# ============================================================================
-# Hugo Build Artifacts
-# ============================================================================
-
-# Generated site output
-public/
-
-# Hugo resources (processed assets)
-resources/
-
-# Hugo build lock
-.hugo_build.lock
-
-# Hugo stats
-hugo_stats.json
-
-# Auto-generated JS config
-**/assets/jsconfig.json
-
-# ============================================================================
-# Node.js & Package Managers
-# ============================================================================
-
-# Dependencies
-node_modules/
-
-# ============================================================================
-# Environment & Configuration
-# ============================================================================
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# ============================================================================
-# Generated Content
-# ============================================================================
-
-# Pagefind search index
-pagefind/
-static/pagefind/
-
-# ============================================================================
-# Operating System
-# ============================================================================
-
-# macOS
+_private/
 .DS_Store
-.DS_Store?
-._*
+node_modules/
+.claude/settings.local.json
 
-# Windows
-Thumbs.db
-Desktop.ini
-
-# Linux
-*~
-
-# ============================================================================
-# Logs & Temporary Files
-# ============================================================================
-
-*.log
-npm-debug.log*
+# Instructions for AI assistants (kept private)
+CLAUDE.md
+AGENTS.md

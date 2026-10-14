@@ -1,0 +1,87 @@
+<!doctype html>
+<!--
+  tools/index.html: the directory of tools, model code, and datasets.
+
+  The list fills itself from content/tools.json; edit that file to add a tool.
+  Safe to edit: the text between the "EDIT HERE" markers.
+  Each tool can later get its own folder here, for example tools/adaptive-big-five/index.html.
+  The header and footer below are backups shown only if JavaScript fails;
+  normally they are rebuilt from content/site.json.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tools and data, Muchen Xi</title>
+  <meta name="description" content="Assessment tools, model code, and open datasets by Muchen Xi.">
+  <meta property="og:title" content="Tools and data, Muchen Xi">
+  <meta property="og:description" content="Assessment tools, model code, and open datasets.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/img/muchen-xi.jpg">
+  <script src="../assets/js/theme-init.js"></script>
+  <link rel="preload" href="../assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/tools.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-name" href="../index.html">Muchen Xi</a>
+      <nav class="site-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../research.html">Research</a></li>
+          <li><a href="../publications.html">Publications</a></li>
+          <li><a href="../tools/index.html" aria-current="page">Tools</a></li>
+          <li><a href="../files/cv.pdf">CV</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" class="wrap">
+    <!-- ===== EDIT HERE: page introduction ===== -->
+    <section class="page-head">
+      <h1>Tools and data</h1>
+      <p class="page-head__lead">Assessment tools, model code, and open data from my research, free for research use. If you use one, please cite the paper it comes from.</p>
+    </section>
+    <!-- ===== END EDIT ===== -->
+
+    <section class="section" aria-labelledby="tools-title">
+      <h2 class="section__title" id="tools-title"><span class="tile tile--small"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#i-code"></use></svg></span>Tools</h2>
+      <ul class="tool-list" id="tool-list">
+        <li class="tool"><p>The list loads from <a href="../content/tools.json">tools.json</a>.</p></li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="data-title">
+      <h2 class="section__title" id="data-title"><span class="tile tile--small"><svg class="icon" aria-hidden="true"><use href="../assets/img/icons.svg#i-dataset"></use></svg></span>Data</h2>
+      <ul class="tool-list" id="data-list">
+        <li class="tool"><p>The list loads from <a href="../content/tools.json">tools.json</a>.</p></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__name">Muchen Xi</p>
+        <p class="site-footer__role">Postdoctoral Research Fellow<br>Department of Psychological Sciences, Rice University</p>
+      </div>
+      <ul class="site-footer__links">
+        <li><a href="mailto:mx22@rice.edu"><span>Email</span></a></li>
+        <li><a href="https://scholar.google.com/citations?user=0nWSjbAAAAAJ"><span>Google Scholar</span></a></li>
+        <li><a href="https://orcid.org/0000-0003-3939-9568"><span>ORCID</span></a></li>
+        <li><a href="../content/publications.bib"><span>All publications as BibTeX</span></a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
