@@ -17,16 +17,14 @@
     {
       "area": "dynamics",
       "title": "The Dynamic Contingency Model",
-      "summary": "DRAFT: A Bayesian dynamic structural equation model, written in Stan, that estimates links between situations and behavior in the same moment together with carryover and lagged effects, and adjusts for unequal time between surveys. In experience sampling data from about 300 undergraduates across 25 behavior and situation pairs, it outperformed competing models. Situations were most strongly tied to behavior in the same moment, behavior predicted later situations more than the reverse, and people differed substantially in these dynamics, with the Big Five explaining only a small part.",
+      "summary": "DRAFT: A Bayesian dynamic structural equation model, written in Stan, that estimates links between situations and behavior in the same moment together with carryover and lagged effects, and adjusts for unequal time between surveys. In experience sampling data from about 300 undergraduates across 25 behavior and situation pairs, it outperformed competing models. Situations were most strongly tied to behavior in the same moment, behavior predicted later situations more than the reverse, and people differed substantially in these dynamics. A companion study with continuous time models found that situations mainly shift where behavior settles rather than how fast it changes.",
       "icon": "dynamics",
-      "papers": ["xi2026dcm"]
-    },
-    {
-      "area": "dynamics",
-      "title": "Situations in continuous time",
-      "summary": "DRAFT: Using continuous time structural equation models (ctSEM), we compared two accounts of how situations act on behavior: as external inputs that shift behavior to a new level, or as part of one coupled system with behavior. The input account predicted new observations better, suggesting that situations mainly redirect where behavior settles rather than steering how fast it changes.",
-      "icon": "dynamics",
-      "papers": ["simon2026situations"]
+      "figure": {
+        "src": "assets/img/research/dcm-diagram.svg",
+        "alt": "Three panel model diagram. A: each person's state and situation scores are split into within-person and between-person parts. B: within each person, personality states and situations at time t-1 predict states and situations at time t through carryover and lagged paths, with a same-moment path from situation to state. C: a personality trait predicts each person's means and dynamic coefficients.",
+        "caption": "DRAFT: The Dynamic Contingency Model. (A) Scores are split into within-person and between-person parts. (B) Each person's carryover, lagged, and same-moment paths between personality states (p) and situations (s). (C) Personality traits (PT) predict each person's dynamic coefficients."
+      },
+      "papers": ["xi2026dcm", "simon2026situations"]
     },
     {
       "area": "dynamics",
